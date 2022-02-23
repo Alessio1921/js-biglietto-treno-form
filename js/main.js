@@ -1,12 +1,14 @@
 let fullName=document.getElementById("name");
 let numberOfKm=document.getElementById("km");
 let eta= document.getElementById("eta");
+let ticket=document.getElementById("ticket");
 document.getElementById("create").addEventListener('click', function(){
   let newNumberOfKm= parseInt(numberOfKm.value);
   let priceTicket = newNumberOfKm * 0.27;
   let discount;
   let offering="Biglietto standard";
   document.getElementById("name-passenger").innerHTML=fullName.value;
+  ticket.classList.remove("d-none");
   if ( isNaN(newNumberOfKm))
   {
     console.warn("devi inserire solo i numeri");
@@ -36,6 +38,7 @@ document.getElementById("cancel").addEventListener('click', function(){
   fullName.value="";
   numberOfKm.value="";
   eta.value="";
+  ticket.classList.add("d-none")
   document.getElementById("name-passenger").innerHTML="";
   document.getElementById("cost").innerHTML="";
   document.getElementById("offering").innerHTML="";
