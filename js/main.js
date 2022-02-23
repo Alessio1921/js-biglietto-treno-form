@@ -1,30 +1,26 @@
+let fullName=document.getElementById("name");
+let numberOfKm=document.getElementById("km");
+let eta= document.getElementById("eta");
 document.getElementById("create").addEventListener('click', function(){
-  const fullName= document.getElementById("name").value;
-  const numberOfKm= parseInt( document.getElementById("km").value);
-  const eta = document.getElementById("eta").value;
-  console.log(fullName);
-  console.log(numberOfKm);
-  console.log(eta);
-
-  let priceTicket = numberOfKm * 0.27;
+  let newNumberOfKm= parseInt(numberOfKm.value);
+  let priceTicket = newNumberOfKm * 0.27;
   let discount;
   let offering="Biglietto standard";
-  document.getElementById("name-passenger").innerHTML=fullName;
-
-  if ( isNaN(numberOfKm))
+  document.getElementById("name-passenger").innerHTML=fullName.value;
+  if ( isNaN(newNumberOfKm))
   {
     console.warn("devi inserire solo i numeri");
-    document.getElementById("price").innerHTML= "Hai inserito dei caratteri non validi, ricarica la pagina";
+    document.getElementById("offering").innerHTML= "inserisci solo caratteri numerici nei kilometri";
   }
   else
   {
-    if (eta == "underage")
+    if (eta.value == "underage")
     {
       discount = ((priceTicket/100)*17);
       priceTicket-= discount ;
       offering="Biglietto per minorenni"
     }
-    else if (eta == "elderly")
+    else if (eta.value == "elderly")
     {
       discount = ((priceTicket/100)*33);
       priceTicket -= discount;
@@ -32,13 +28,17 @@ document.getElementById("create").addEventListener('click', function(){
     }
     document.getElementById("cost").innerHTML=priceTicket.toFixed(2) + "€";
     document.getElementById("offering").innerHTML=offering;
-  
-  } 
-  console.log(priceTicket);
-  fullName.value="";
-  eta.value="";
-
+    document.getElementById("carriage").innerHTML=Math.floor((Math.random()*10)+1)
+    document.getElementById("code").innerHTML=Math.floor(Math.random()*100000)
+    } 
 })
-
-
-
+document.getElementById("cancel").addEventListener('click', function(){
+  fullName.value="";
+  numberOfKm.value="";
+  eta.value="";
+  document.getElementById("name-passenger").innerHTML="";
+  document.getElementById("cost").innerHTML="";
+  document.getElementById("offering").innerHTML="";
+  document.getElementById("carriage").innerHTML="";
+  document.getElementById("code").innerHTML="";
+})
